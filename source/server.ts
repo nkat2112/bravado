@@ -1,3 +1,7 @@
+// First we configure and load all environment variables:
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname+'/../.env' });
+
 import http from 'http';
 import express, { Express } from 'express';
 import morgan from 'morgan';
@@ -41,4 +45,3 @@ router.use((req, res, next) => {
 const httpServer = http.createServer(router);
 const PORT: any = process.env.PORT ?? 6060;
 httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
-
