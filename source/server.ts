@@ -6,6 +6,7 @@ import http from 'http';
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import routes from './routes/routes';
+import { connectToDatabase } from "./services/database.service"
 
 const router: Express = express();
 
@@ -41,7 +42,14 @@ router.use((req, res, next) => {
     });
 });
 
+/** Setup the database connection */
+connectToDatabase()
+  .catch((error: Error) => {
+      console.error("Database connection failed.", error);
+      process.exit();
+  });
+
 /** Server */
 const httpServer = http.createServer(router);
-const PORT: any = process.env.PORT ?? 6060;
-httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
+const port: any = process.env.PORT ?? 6060;
+httpServer.listen(port, () => console.log(`The server is running on port ${port}`));

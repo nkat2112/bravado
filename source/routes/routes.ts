@@ -2,11 +2,10 @@ import express from 'express';
 import controller from '../controllers/requests';
 const router = express.Router();
 
-router.get('/posts', controller.getPosts);
-router.get('/posts/:id', controller.getPost);
-router.put('/posts/:id', controller.updatePost);
-router.delete('/posts/:id', controller.deletePost);
-router.post('/posts', controller.addPost);
+router.get('/albums', controller.getAlbums);
+router.get('/albums/:id', controller.getAlbum);
+router.put('/albums/:id', controller.updateAlbum);
+router.delete('/albums/:id', controller.deleteAlbum);
+router.post('/albums', controller.addAlbum);
 
 export = router;
-
